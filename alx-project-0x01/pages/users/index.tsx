@@ -37,7 +37,7 @@ const Users: React.FC<UsersPageProps> = ({ users }) => {
   );
 };
 
-// {users.map((user: UserProps) => (
+// posts.map
 
 export async function getStaticProps() {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
