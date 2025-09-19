@@ -18,7 +18,7 @@ const Users: React.FC<UsersPageProps> = ({ users }) => {
           </button>
         </div>
         <div className="grid grid-cols-3 gap-4">
-          {posts.map((user: UserProps) => (
+          {users.map((user: UserProps) => (
             <UserCard
               key={user.id}
               id={user.id}
@@ -36,6 +36,8 @@ const Users: React.FC<UsersPageProps> = ({ users }) => {
     </div>
   );
 };
+
+// {users.map((user: UserProps) => (
 
 export async function getStaticProps() {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
