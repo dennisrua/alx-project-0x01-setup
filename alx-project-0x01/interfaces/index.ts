@@ -80,4 +80,4 @@ export interface UserProps {
   company: Company;
 }
 
-
+// onSubmit: (post: UserProps) => void;
