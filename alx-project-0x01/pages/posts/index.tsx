@@ -1,8 +1,9 @@
-import PostCard from "@/components/common/PostCard";
-import PostModal from "@/components/common/PostModal";
-import Header from "@/components/layout/Header";
-import { PostData, PostProps } from "@/interfaces";
-import { useState } from "react";
+import PostCard from '@/components/common/PostCard';
+import PostModal from '@/components/common/PostModal';
+import Header from '@/components/layout/Header';
+import { PostData, PostProps } from '@/interfaces';
+import { useState } from 'react';
+import { PostProps } from '@/interfaces';
 
 const Posts: React.FC<{ posts: PostProps[] }> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -27,18 +28,29 @@ const Posts: React.FC<{ posts: PostProps[] }> = ({ posts }) => {
         </div>
         <div className="grid grid-cols-3 gap-2 ">
           {posts?.map(({ title, body, userId, id }: PostProps, key: number) => (
-            <PostCard title={title} body={body} userId={userId} id={id} key={key} />
+            <PostCard
+              title={title}
+              body={body}
+              userId={userId}
+              id={id}
+              key={key}
+            />
           ))}
         </div>
       </main>
 
-      {isModalOpen && <PostModal onClose={() => setModalOpen(false)} onSubmit={handleAddPost} />}
+      {isModalOpen && (
+        <PostModal
+          onClose={() => setModalOpen(false)}
+          onSubmit={handleAddPost}
+        />
+      )}
     </div>
   );
 };
 
 export async function getStaticProps() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const response = await fetch('https://jsonplaceholder.typicode.com/posts');
   const posts = await response.json();
 
   return {
@@ -80,5 +92,3 @@ export interface UserModalProps {
   onClose: () => void;
   onSubmit: (user: UserData) => void;
 }
-
-
