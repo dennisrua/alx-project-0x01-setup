@@ -1,7 +1,21 @@
-import Header from "@/components/layout/Header";
-import UserModal from "@/components/common/UserModal";
-import { UserProps, UserData } from "@/interfaces";
-import { useState } from "react";
+import Header from '@/components/layout/Header';
+import UserModal from '@/components/common/UserModal';
+import { UserProps, UserData } from '@/interfaces';
+import { useState } from 'react';
+
+// <UserCard
+//  key={user.id}
+//   id={user.id}
+//  name={user.name}
+//  username={user.username}
+//  email={user.email}
+//  phone={user.phone}
+//  website={user.website}
+//  address={user.address}
+//  company={user.company}
+//  />
+
+// posts.map
 
 const Users: React.FC<{ users: UserProps[] }> = ({ users }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -36,21 +50,25 @@ const Users: React.FC<{ users: UserProps[] }> = ({ users }) => {
         </div>
       </main>
 
-      {isModalOpen && <UserModal onClose={() => setModalOpen(false)} onSubmit={handleAddUser} />}
+      {isModalOpen && (
+        <UserModal
+          onClose={() => setModalOpen(false)}
+          onSubmit={handleAddUser}
+        />
+      )}
     </div>
   );
 };
 
 export async function getStaticProps() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
   const users = await response.json();
 
   return {
     props: {
-      users
-    }
+      users,
+    },
   };
 }
 
 export default Users;
-
